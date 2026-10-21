@@ -1,0 +1,122 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YT Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0d0f14;--p:#14171e;--p2:#1b1f29;--line:rgba(255,255,255,.09);--t:#e9ebf2;--m:#8a90a2;--a:#7c83ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font:14px/1.55 Inter,system-ui,sans-serif;height:100vh;display:flex;flex-direction:column}
+.bar{display:flex;gap:6px;align-items:center;flex-wrap:wrap;padding:10px 16px;background:var(--p);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15px;margin-right:14px}.logo i{font-style:normal;background:var(--a);color:#fff;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:10px}
+button,input,textarea{font:inherit;color:var(--t);background:var(--p2);border:1px solid var(--line);border-radius:8px;padding:6px 11px}
+button{cursor:pointer;font-weight:500;transition:border-color .15s,background .15s}button:hover{border-color:rgba(255,255,255,.22)}
+button.on{background:rgba(124,131,255,.16);border-color:rgba(124,131,255,.5);color:#d4d7ff}button.pri{background:#6c73f5;border-color:#6c73f5;color:#fff;font-weight:600}button.pri:hover{background:#7c83ff}
+[data-a]::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--d);margin-right:7px}
+[data-a=prompt]{--d:#f5c76a}[data-a=upload]{--d:#6cb6ff}[data-a=ai]{--d:#a78bfa}[data-a=image]{--d:#f58db2}[data-a=video]{--d:#ff9f6e}[data-a=export]{--d:#5fd3a4}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--a);outline-offset:1px}
+textarea,input{background:#0f1218}textarea:focus{border-color:var(--a);outline:0}
+section{flex:1;min-height:0;display:none}section.show{display:flex;flex-direction:column}
+#cv{flex:1;position:relative;overflow:auto;background:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px) 0 0/24px 24px}
+#cv>svg{position:absolute;left:0;top:0;width:3000px;height:2000px;pointer-events:none}
+#cv path{fill:none;stroke:#6c73f5;stroke-opacity:.75;stroke-width:2;pointer-events:stroke;cursor:pointer}#cv path:hover{stroke:#ff7a7a;stroke-opacity:1;stroke-width:3}
+.n{position:absolute;width:248px;background:var(--p);border:1px solid var(--line);border-top:2px solid var(--c);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.n[data-t=prompt]{--c:#f5c76a}.n[data-t=upload]{--c:#6cb6ff}.n[data-t=ai]{--c:#a78bfa}.n[data-t=image]{--c:#f58db2}.n[data-t=video]{--c:#ff9f6e}.n[data-t=export]{--c:#5fd3a4}
+.n h4{margin:0;padding:9px 12px;cursor:move;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);font-size:13px;font-weight:600}
+.n .bd{padding:10px}.n textarea{width:100%;height:84px;resize:vertical;font-size:13px}.n img,.n video{max-width:100%;border-radius:8px;margin-top:6px}.res{white-space:pre-wrap;color:var(--m);font-size:12px;max-height:160px;overflow:auto}
+.n.run{border-color:var(--a);box-shadow:0 0 0 3px rgba(124,131,255,.25),0 10px 30px rgba(0,0,0,.4)}.n.ok{border-color:#3ecf8e}.n.err{border-color:#ef5b5b}.x{cursor:pointer;color:var(--m)}.x:hover{color:var(--t)}
+.pt{position:absolute;top:15px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--c,#8a90a2);cursor:crosshair}.pt:hover{background:var(--c,#8a90a2)}.pi{left:-7px}.po{right:-7px}
+#co{flex-direction:row}#side{width:270px;padding:16px;background:var(--p);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px;overflow:auto}
+#main{flex:1;padding:18px;overflow:auto;display:flex;flex-direction:column;gap:12px}
+#cards{display:flex;flex-direction:column;gap:10px;max-width:880px}
+.card{display:flex;gap:12px;background:var(--p);border:1px solid var(--line);border-left:3px solid var(--c,var(--a));border-radius:12px;padding:12px 14px}
+.av{flex:none;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.06);display:grid;place-items:center;font-size:16px}
+.cb b{display:block;font-weight:600;margin-bottom:2px}.cb div{white-space:pre-wrap;max-width:90ch;color:#cfd3e0}
+.card.mg{background:var(--p2);border-color:rgba(124,131,255,.45);border-left-color:var(--a)}#appr{display:block;border-color:rgba(124,131,255,.45)}#appr b{display:block;margin-bottom:6px}
+#brief,#fb{width:100%;height:76px}.muted{color:var(--m);font-size:12px}hr{border:0;border-top:1px solid var(--line);width:100%}
+</style>
+<div class=bar><span class=logo><i>▶</i>YT Studio</span><button id=t1 class=on>Workflow</button><button id=t2>Công ty chuyên gia</button></div>
+
+<section id=wf class=show>
+ <div class=bar><button data-a=prompt>+ Prompt</button><button data-a=upload>+ Ảnh tham chiếu</button><button data-a=ai>+ Claude viết prompt</button><button data-a=image>+ Tạo ảnh</button><button data-a=video>+ Tạo video</button><button data-a=export>+ Xuất file</button>
+ <span class=muted>Kéo chấm phải sang chấm trái để nối dây. Bấm vào dây để xoá.</span><button class=pri id=run style="margin-left:auto">▶ Chạy</button></div>
+ <div id=cv><svg id=sv></svg></div>
+</section>
+
+<section id=co>
+ <div id=side><div class=muted>Kênh (mỗi kênh một chuyên gia chủ trì)</div><div id=tabs style="display:flex;flex-direction:column;gap:6px"></div><button id=addc>+ Thêm kênh</button>
+  <hr><input id=cn placeholder="Tên kênh"><input id=cg placeholder="Ngách của kênh"><textarea id=cl rows=4 placeholder="Chuyên gia chủ trì kênh này: phong cách, giọng điệu, kinh nghiệm..."></textarea></div>
+ <div id=main>
+  <textarea id=brief placeholder="Giao việc: ví dụ 'Lên kế hoạch video đầu tiên cho kênh về nấu ăn tối giản, mục tiêu 1.000 sub trong 60 ngày'"></textarea>
+  <div class=bar style="padding:0;background:none;border:0"><label class=muted>Ảnh chụp analytics (tuỳ chọn): <input type=file id=shot accept="image/*"></label><button class=pri id=go>Giao việc cho cả công ty</button></div>
+  <div id=cards></div>
+  <div id=appr hidden class=card><b>Quản lý đã chốt. Quyền quyết định cuối là của bạn.</b><textarea id=fb placeholder="Muốn sửa gì? Ghi góp ý rồi bấm 'Yêu cầu làm lại'"></textarea>
+   <div style="display:flex;gap:8px;margin-top:8px"><button class=pri id=ok>Duyệt, gửi sang Workflow</button><button id=redo>Yêu cầu làm lại</button></div></div>
+ </div>
+</section>
+
+<script>
+const $=s=>document.querySelector(s),esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const api=(n,b)=>fetch('/api/'+n,{method:'POST',body:JSON.stringify(b)}).then(async r=>{const d=await r.json();if(!r.ok)throw new Error(d.error);return d});
+const f64=f=>new Promise(r=>{const x=new FileReader;x.onload=()=>r(x.result);x.readAsDataURL(f)});
+const blk=d=>{const m=/^data:(.+?);base64,(.+)$/.exec(d);return{type:'image',source:{type:'base64',media_type:m[1],data:m[2]}}};
+function show(w){$('#wf').className=w=='wf'?'show':'';$('#co').className=w=='co'?'show':'';$('#t1').className=w=='wf'?'on':'';$('#t2').className=w=='co'?'on':''}
+$('#t1').onclick=()=>show('wf');$('#t2').onclick=()=>show('co');
+
+/* ---------- WORKFLOW ---------- */
+const T={prompt:['📝 Prompt',0,1],upload:['🖼 Ảnh tham chiếu',0,1],ai:['🤖 Claude viết prompt',1,1],image:['🎨 Tạo ảnh',1,1],video:['🎬 Tạo video',1,1],export:['💾 Xuất file',1,0]};
+const cv=$('#cv'),sv=$('#sv');let N={},E=[],uid=0,tmp=null,drag=null;
+function add(type,x,y,v=''){const i=++uid,[t,hi,ho]=T[type],el=document.createElement('div');el.className='n';el.dataset.t=type;el.style.cssText=`left:${x}px;top:${y}px`;
+ el.innerHTML=`<h4><span>${t}</span><b class=x title="Xoá">✕</b></h4>${hi?'<i class="pt pi"></i>':''}${ho?'<i class="pt po"></i>':''}<div class=bd>${type=='prompt'||type=='ai'?`<textarea placeholder="${type=='ai'?'Dặn Claude: vd viết lại thành prompt ảnh tiếng Anh chi tiết':'Nhập prompt...'}"></textarea>`:type=='upload'?'<input type=file accept="image/*">':''}<div class=res></div></div>`;
+ const n=N[i]={id:i,type,el};const ta=el.querySelector('textarea');if(ta)ta.value=v;
+ if(type=='upload')el.querySelector('input').onchange=async e=>{n.img=await f64(e.target.files[0]);el.querySelector('.res').innerHTML=`<img src="${n.img}">`};
+ el.querySelector('.x').onclick=()=>{el.remove();delete N[i];E=E.filter(e=>e.f!=i&&e.t!=i);draw()};
+ el.querySelector('h4').onmousedown=e=>{if(e.target.className=='x')return;drag={n:el,dx:e.clientX-el.offsetLeft,dy:e.clientY-el.offsetTop}};
+ const po=el.querySelector('.po');if(po)po.onmousedown=e=>{e.stopPropagation();tmp={f:i,x:e.clientX,y:e.clientY}};
+ const pi=el.querySelector('.pi');if(pi)pi.onmouseup=()=>{if(tmp&&tmp.f!=i&&!E.some(e=>e.f==tmp.f&&e.t==i))E.push({f:tmp.f,t:i});tmp=null;draw()};
+ cv.appendChild(el);draw();return i}
+const pos=(n,s)=>{const r=n.el.querySelector(s).getBoundingClientRect(),c=cv.getBoundingClientRect();return[r.left-c.left+cv.scrollLeft+7,r.top-c.top+cv.scrollTop+7]};
+const curve=(a,b)=>`M${a[0]},${a[1]} C${a[0]+80},${a[1]} ${b[0]-80},${b[1]} ${b[0]},${b[1]}`;
+function draw(){let h=E.map((e,k)=>`<path data-k=${k} d="${curve(pos(N[e.f],'.po'),pos(N[e.t],'.pi'))}"><title>Bấm để xoá dây</title></path>`).join('');
+ if(tmp&&tmp.cx!=null){const c=cv.getBoundingClientRect();h+=`<path style="stroke-dasharray:5;pointer-events:none" d="${curve(pos(N[tmp.f],'.po'),[tmp.cx-c.left+cv.scrollLeft,tmp.cy-c.top+cv.scrollTop])}"/>`}sv.innerHTML=h}
+sv.onclick=e=>{if(e.target.dataset.k){E.splice(e.target.dataset.k,1);draw()}};
+onmousemove=e=>{if(drag){drag.n.style.left=e.clientX-drag.dx+'px';drag.n.style.top=e.clientY-drag.dy+'px';draw()}if(tmp){tmp.cx=e.clientX;tmp.cy=e.clientY;draw()}};
+onmouseup=()=>{drag=null;if(tmp){tmp=null;draw()}};
+document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>add(b.dataset.a,30+Object.keys(N).length*20,30+Object.keys(N).length*20));
+function exportIt(i){const a=document.createElement('a');
+ if(i.video){a.href=i.video;a.target='_blank';a.download='video.mp4'}else if(i.image){a.href=i.image;a.download='anh.png'}else{a.href=URL.createObjectURL(new Blob([i.text],{type:'text/plain'}));a.download='prompt.txt'}a.click()}
+async function runWF(){const ind={};for(const k in N){ind[k]=0;N[k].el.className='n'}E.forEach(e=>ind[e.t]++);
+ const q=Object.keys(N).filter(k=>!ind[k]),order=[],o={};
+ while(q.length){const k=q.shift();order.push(k);E.filter(e=>e.f==k).forEach(e=>--ind[e.t]||q.push(e.t))}
+ for(const k of order){const n=N[k],el=n.el,r=el.querySelector('.res'),ta=el.querySelector('textarea');el.className='n run';
+  const inp={text:'',image:null,video:null};E.filter(e=>e.t==k).forEach(e=>{const u=o[e.f]||{};if(u.text)inp.text+=(inp.text?'\n':'')+u.text;inp.image=u.image||inp.image;inp.video=u.video||inp.video});
+  try{let out={text:inp.text,image:inp.image};
+   if(n.type=='prompt')out={text:ta.value};
+   else if(n.type=='upload'){if(!n.img)throw new Error('Chưa chọn ảnh');out={image:n.img}}
+   else if(n.type=='ai'){const c=[];if(inp.image)c.push(blk(inp.image));c.push({type:'text',text:inp.text||'(không có đầu vào)'});out={text:(await api('claude',{system:ta.value||'Viết lại thành prompt chi tiết.',content:c})).text};r.textContent=out.text}
+   else if(n.type=='image'){out.image=(await api('image',{prompt:inp.text,ref:inp.image})).image;r.innerHTML=`<img src="${out.image}">`}
+   else if(n.type=='video'){out.video=(await api('video',{prompt:inp.text,image:inp.image})).video;r.innerHTML=`<video src="${out.video}" controls></video>`}
+   else{exportIt(inp);r.textContent='Đã xuất file'}
+   o[k]=out;el.className='n ok'}catch(e){el.className='n err';r.textContent='Lỗi: '+e.message;break}}}
+$('#run').onclick=runWF;
+const p=add('prompt',30,40,'Một video 30 giây giới thiệu...'),a=add('ai',300,40,'Viết lại thành prompt ảnh tiếng Anh chi tiết, điện ảnh.'),im=add('image',570,40),v=add('video',840,40),x=add('export',1110,40);
+E.push({f:p,t:a},{f:a,t:im},{f:im,t:v},{f:v,t:x});draw();
+
+/* ---------- CÔNG TY CHUYÊN GIA ---------- */
+const A=[['🔎 Chuyên gia nghiên cứu','nghiên cứu thị trường YouTube, phân tích ngách và đối thủ, lên danh sách ý tưởng rồi CHỌN ý tưởng tốt nhất'],['🧭 Chiến lược gia YouTube','định vị kênh, lịch đăng, việc phải làm từng ngày'],['🔥 Chuyên gia video viral','kịch bản, hook 3 giây đầu, tiêu đề và ý tưởng thumbnail'],['📊 Chuyên gia thuật toán YouTube','phân tích hiển thị, CTR, thời gian xem, giữ chân; đọc ảnh chụp analytics nếu có'],['🎞 Quản lý sản xuất','quy trình nghiên cứu, kịch bản, dựng, thumbnail và checklist kiểm tra trước khi sản xuất'],['💰 Chiến lược kinh doanh creator','kế hoạch kiếm tiền theo từng giai đoạn của kênh, mỗi giai đoạn làm gì']];
+let C=JSON.parse(localStorage.ch||'null')||[{name:'Kênh 1',niche:'',lead:'Thực tế, dựa trên số liệu, nói thẳng.',log:[]}],cur=0;const save=()=>localStorage.ch=JSON.stringify(C);
+function renderCo(){const c=C[cur];$('#tabs').innerHTML=C.map((k,i)=>`<button data-i=${i} class="${i==cur?'on':''}">${esc(k.name)}</button>`).join('');
+ document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;renderCo()});$('#cn').value=c.name;$('#cg').value=c.niche;$('#cl').value=c.lead;renderCards()}
+function renderCards(){const l=C[cur].log;$('#cards').innerHTML=l.map((m,i)=>{const [ic,...r]=m.who.split(' ');return `<div class="card ${ic=='👔'?'mg':''}" style="--c:${['#8ecae6','#b39cff','#ff9cba','#6ee7b7','#ffd166','#ffa94d','#ff8f6b'][i%7]}"><span class=av>${ic}</span><div class=cb><b>${r.join(' ')}</b><div>${esc(m.text)}</div></div></div>`}).join('');$('#appr').hidden=!(l.length==7&&!l[6].text.startsWith('Lỗi')&&!l[6].text.startsWith('⏳'))}
+$('#cn').oninput=e=>{C[cur].name=e.target.value;save();document.querySelectorAll('#tabs button')[cur].textContent=e.target.value};$('#cg').oninput=e=>{C[cur].niche=e.target.value;save()};$('#cl').oninput=e=>{C[cur].lead=e.target.value;save()};
+$('#addc').onclick=()=>{C.push({name:'Kênh '+(C.length+1),niche:'',lead:'',log:[]});cur=C.length-1;save();renderCo()};
+async function runCo(){const c=C[cur],brief=$('#brief').value+($('#fb').value?'\n\nGÓP Ý CỦA CHỦ KÊNH (bắt buộc làm theo): '+$('#fb').value:''),sh=$('#shot').files[0],img=sh?await f64(sh):null;
+ if(!$('#brief').value.trim())return alert('Hãy nhập việc cần giao.');c.log=[];renderCards();$('#go').disabled=true;let tr='';
+ const ctx=`Kênh: ${c.name}\nNgách: ${c.niche}\nChuyên gia chủ trì kênh: ${c.lead}\nYêu cầu của chủ kênh: ${brief}`;
+ for(const [n,d] of [...A,['👔 Quản lý chung',null]]){
+  const sys=d?`Bạn là ${n} trong một công ty sản xuất video YouTube kiếm tiền. Nhiệm vụ: ${d}. Làm việc với đồng nghiệp như người thật: nhắc tên họ, dẫn lại ý, đồng ý hoặc phản biện thẳng. Tiếng Việt, ngắn gọn, có cấu trúc.`:`Bạn là Quản lý chung của công ty. Đọc ý kiến 6 chuyên gia, giải quyết mâu thuẫn giữa họ, đưa ra QUYẾT ĐỊNH CUỐI, việc 7 ngày tới và rủi ro chính. Chủ kênh sẽ duyệt cuối cùng. Kết thúc bằng một dòng "PROMPT_ẢNH: <prompt tiếng Anh cho ảnh/thumbnail đầu vào>". Tiếng Việt.`;
+  const content=[];if(img&&n.includes('thuật toán'))content.push(blk(img));content.push({type:'text',text:ctx+(tr?'\n\nĐồng nghiệp đã trao đổi:\n'+tr:'')});
+  c.log.push({who:n,text:'⏳ đang làm...'});renderCards();
+  try{const t=(await api('claude',{system:sys,content})).text;c.log.at(-1).text=t;tr+=`[${n}]: ${t}\n\n`}catch(e){c.log.at(-1).text='Lỗi: '+e.message;break}
+  save();renderCards()}
+ $('#go').disabled=false}
+$('#go').onclick=()=>{$('#fb').value='';runCo()};$('#redo').onclick=runCo;
+$('#ok').onclick=()=>{const t=C[cur].log[6].text,m=t.match(/PROMPT_ẢNH:\s*([\s\S]+)/);add('prompt',30+Math.random()*80,300+Math.random()*80,m?m[1].trim():t);show('wf')};
+renderCo();
+</script>
